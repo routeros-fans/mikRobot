@@ -5,7 +5,7 @@
 #
 /system script
 :if ([:len [find name=teCallbackLeaseCard]] != 0) do={ remove teCallbackLeaseCard }
-add dont-require-permissions=no name=teCallbackLeaseCard owner=xenon007 policy=\
+add dont-require-permissions=no name=teCallbackLeaseCard owner=admin policy=\
     ftp,reboot,read,write,policy,test source="#-------------------------------\
     --------------------teCallbackLeaseCard-----------------------------------\
     ---------------------------\r\

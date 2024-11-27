@@ -5,7 +5,7 @@
 #
 /system script
 :if ([:len [find name=getUsersShedul.rsc]] != 0) do={ remove getUsersShedul.rsc }
-add dont-require-permissions=no name=getUsersShedul.rsc owner=xenon007 policy=\
+add dont-require-permissions=no name=getUsersShedul.rsc owner=admin policy=\
     read,write,policy,test source="\r\
     \n:global teMessageResponse\r\
     \n\r\

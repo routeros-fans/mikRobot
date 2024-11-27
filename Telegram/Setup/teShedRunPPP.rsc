@@ -5,7 +5,7 @@
 #
 /system script
 :if ([:len [find name=pppRunProfile.rsc]] != 0) do={ remove pppRunProfile.rsc }
-add dont-require-permissions=no name=pppRunProfile.rsc owner=xenon007 policy=\
+add dont-require-permissions=no name=pppRunProfile.rsc owner=admin policy=\
     read,write,policy,test source="#------------------------------------------\
     ---------tePppRunProfile--------------------------------------------------\
     ------------\r\

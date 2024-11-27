@@ -45,7 +45,7 @@
     :local description [:pick $i ([find $i ";"] + 1) [:len $i]]
     :local startCommand "\7B\22command\22:\22$command\22"
     :local commandDescription ",\22description\22:\22$description\22\7D,"
-    :set command "$startCommand$commandDescription"
+    :set command "$startCommand$commandDescription$endCommand"
     :set $cmdItems ($cmdItems . $command)
   }
   :set cmdItems [:pick $cmdItems 0 ([:len $cmdItems] - 1)]

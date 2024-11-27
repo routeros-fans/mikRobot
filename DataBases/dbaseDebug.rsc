@@ -17,6 +17,7 @@
                 "fDBGteSystemMenu"=false;
                 "fDBGteScripts"=false;
                 "fDBGteSendPhoto"=false;
+                "fDBGteSendAnimation"=false;
                 "fDBGteSendMessage"=false;
                 "fDBGteSetMyCommands"=false;
                 "fDBGteEditMessage"=false;
@@ -30,7 +31,14 @@
                 "fDBGteBuildReplyButton"=false;
                 "fDBGteBuildKeyboard"=false;
                 "fDBGteGenNewValue"=false;
+                "fDBGteLease"=false;
+                "fDBGteLeaseCard"=false;
+                "fDBGtePppCard"=false;
+                "fDBGteUsersCard"=false;
                 "fDBGteIfaceCard"=false;
+                "fDBGteCallbackUserCard"=false;
+                "fDBGteCallbackPppCard"=false;
+                "fDBGteCallbackLeaseCard"=false;
                 "fDBGteCallbackIfaceCard"=false;
                 "fDBGteCallbackRootMenu"=false;
                 "fDBGteCallbackSystemMenu"=false;

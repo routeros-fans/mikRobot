@@ -29,6 +29,9 @@
 	:local disableWebPagePreview true
 	:local parseMode "html"
 
+  :local lenText [:len $fText]
+  :if ($fDBGteSendMessage = true) do={:put "teSendMessage lenText=$lenText"; :log info "teSendMessage lenText=$lenText"}
+
 	:local tgUrl []; :local result []; :local content []
   :if ([:len $fText] >= 4096) do={:return [error message="lengthCaptionError"]}
 

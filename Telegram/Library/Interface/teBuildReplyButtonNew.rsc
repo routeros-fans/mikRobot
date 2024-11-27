@@ -5,7 +5,7 @@
 
 #   1.  fPictButton      -   picture for the button from Emoji Unicode Tables
 #   2.  fTextButton      -   text for the button
-#   3.  fRequestContact  -   request current location true or false
+#   3.  fRequestLocation -   request current location true or false
 
 #---------------------------------------------------teBuildReplyButton--------------------------------------------------------------
 
@@ -19,10 +19,16 @@
 	:local teBuildReplyButtonVersion "2.9.7.22"
 	:set ($dbaseVersion->"teBuildReplyButton") $teBuildReplyButtonVersion
 
-	:local startButton "\22"
+	:local requestLocation $fRequestLocation
+	:local startButton "{\22text\22:\22"
+	:if ($requestLocation = true) do={
+		:set requestLocation ",\22request_location\22:true}"
+	} else={
+		:set requestLocation "}"
+	}
 	:local endButton "\22"
 
-	:local button "$startButton$fPictButton$fTextButton$endButton"
+	:local button "$startButton$fPictButton$fTextButton$endButton$requestLocation"
 
 	:if ($fDBGteBuildReplyButton = true) do={:put "teBuildReplyButton = $button"; :log info "teBuildReplyButton = $button"}
 	:return $button

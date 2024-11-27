@@ -5,7 +5,7 @@
 #
 /system script
 :if ([:len [find name=mainBot]] != 0) do={ remove mainBot }
-add dont-require-permissions=no name=mainBot owner=xenon007 policy=\
+add dont-require-permissions=no name=mainBot owner=admin policy=\
     ftp,read,write,policy,test source="\r\
     \n:global dbaseBotSettings\r\
     \n:local botID (\$dbaseBotSettings->\"botID\")\r\
@@ -161,8 +161,8 @@ add dont-require-permissions=no name=mainBot owner=xenon007 policy=\
     \"->\"text\")\r\
     \n\t\t\t\t\t\t:local pinnedMessageFromID (\$v->\"message\"->\"pinned_messa\
     ge\"->\"from\"->\"id\")\r\
-    \n\t\t\t\t\t\t:local pinUserName (\$v->\"message\"->\"from\"->\
-    \"username\")\r\
+    \n\t\t\t\t\t\t:local pinUserName (\$v->\"message\"->\"from\"->\"username\"\
+    )\r\
     \n\t\t\t\t\t\t:if (\$fDBGmainBot) do={:put \"teBot - pinnedMessageID \$pin\
     nedMessageID\"; :log info \"teBot - pinnedMessageID \$pinnedMessageID\"}\r\
     \n\t\t\t\t\t\t:if (\$botID ~ [:tostr \$pinnedMessageFromID]) do={\r\

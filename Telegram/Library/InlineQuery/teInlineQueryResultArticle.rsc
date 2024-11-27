@@ -18,7 +18,6 @@
 
 #   if the global variable fDBGteInlineQueryResultArticle=true, then a debug event will be logged
 #
-
 #---------------------------------------------------teInlineQueryResultArticle--------------------------------------------------------------
 
 :global teInlineQueryResultArticle

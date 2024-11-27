@@ -6,7 +6,6 @@
 #   1.  fChatID   		-   Recipient id
 #   2.  fMessageID 		-   Recipient message id (may be empty). if empty then the message will be sent, otherwise it will be edited
 #   2.  fCommand	 		-   Recipient message id (may be empty). if empty then the message will be sent, otherwise it will be edited
-#   3.  fStealthMode 	-   Removes a function from the list of global variables. (may be empty).
 
 #   Function return 1 or 0
 
@@ -220,15 +219,12 @@
 							:set counter ($counter + 1)
 						}
 					}
-
 					:if ([:len $currentInfo] = 0) do={:set currentInfo "<b>No active clients</b>"}
-
 					:if ([:len $currentInfo] > 1000) do={
 						:local pppActiveClientsCount ("<b>Active clients:</b>\t\t\t" . [:len $pppActiveClients] . "\t units$doubleFeed")
 						:set currentInfo $pppActiveClientsCount
 					}
 				}
-
 				:if ($fCommand = "pppPrintServers") do={
 					:set currentButtons ($currentButtons . "$NL$buttonPppPrintClients$NB$buttonPPP")
 					:set currentHead "<i> - ppp Servers:</i>$doubleFeed"
@@ -329,43 +325,33 @@
 			:if ($pppServersPressed = false) do={
 				:set currentButtons ($currentButtons . "$NL$buttonPppServers")
 			}
-
 			:local dhcpServersPressed false
 			:if ($fCommand = "dhcpServers" or $fCommand = "dhcpServersPrint" or $fCommand = "dhcpClientsPrint") do={
 				:set dhcpServersPressed true
 				:set currentHead "<i> - dhcp:</i>$doubleFeed"
-
 				:if ($fCommand = "dhcpServers") do={ :set currentButtons ($currentButtons . "$NL$buttonDHCPClientsPrint$NB$buttonDhcpLease") }
-
 				:if ($fCommand = "dhcpClientsPrint") do={
 					:set currentButtons ($currentButtons . "$NL$buttonDHCPServersPrint$NB$buttonDhcpLease")
 					:set currentHead "<i> - dhcp Leases:</i>$doubleFeed"
-
 					:local dhcpClientsInfo ""
-
 					:local leaseDynamicCount [:len [/ip dhcp-server lease print as-value where dynamic and !disabled]]
 					:local leaseStaticCount [:len [/ip dhcp-server lease print as-value where !dynamic and !disabled]]
 					:local leaseDisabledCount [:len [/ip dhcp-server lease print as-value where disabled]]
 					:local leaseBlockedCount [:len [/ip dhcp-server lease print as-value where block-access and !disabled]]
 					:local leaseRadiusCount [:len [/ip dhcp-server lease print as-value where radius and !disabled]]
 					:local leaseTotalCount [:len [/ip dhcp-server lease print as-value]]
-
 					:local leaseBoundCount [:len [/ip dhcp-server lease print as-value where status=bound and !disabled]]
 					:local leaseWaitingCount [:len [/ip dhcp-server lease print as-value where status=waiting and !disabled]]
 					:local leaseOfferedCount [:len [/ip dhcp-server lease print as-value where status=offered and !disabled]]
-
 					:local leaseStatic ("<b>Static:</b>\t\t\t\t\t\t\t\t\t$leaseStaticCount" . "$oneFeed")
 					:local leaseDynamic ("Dynamic:\t\t\t $leaseDynamicCount" . "$oneFeed")
 					:local leaseDisabled ("<b>Disabled:</b>\t\t\t\t$leaseDisabledCount" . "$oneFeed-------------------------$oneFeed")
 					:local leaseTotal ("<b>Total:\t\t\t\t\t\t\t\t\t\t$leaseTotalCount</b>" . "$doubleFeed")
-
 					:local leaseBound ("<b>Lease bound:</b>\t\t\t\t$leaseBoundCount" . "$oneFeed")
 					:local leaseWaiting ("Lease waiting:\t\t$leaseWaitingCount" . "$oneFeed")
 					:local leaseOffered ("<b>Lease offered:</b>\t\t$leaseOfferedCount" . "$doubleFeed")
-
 					:local leaseBlocked ("Blocked:\t\t\t\t$leaseBlockedCount" . "$oneFeed")
 					:local leaseRadius ("<b>Radius:</b>\t\t\t\t\t\t$leaseRadiusCount" . "$oneFeed")
-
 					:set dhcpClientsInfo ($dhcpClientsInfo . $leaseStatic . $leaseDynamic . $leaseDisabled . $leaseTotal . $leaseBound . $leaseWaiting . $leaseOffered . $leaseBlocked . $leaseRadius)
 					:set currentInfo $dhcpClientsInfo
 				}
@@ -387,21 +373,17 @@
 							:set dhcpServerInterface ("Interface: " . ($v->"interface") . "$oneFeed")
 							:set dhcpServerLiaseTime ("<b>Lease-time:</b> " . ($v->"lease-time") . "$oneFeed")
 							:set dhcpServerAddressPool ("Address pool: " . ($v->"address-pool") . "$oneFeed")
-
 							:if (($v->"use-radius") != "no") do={
 								:set dhcpServerRadius ("<b>Use radius:</b>\t" . ($v->"use-radius") . "$oneFeed")
 							}
-
 							:local leaseScriptLen ($v->"lease-script")
 							:if ([:len $leaseScriptLen] != 0) do={
 								:set dhcpServerScript ("<b>Lease-script:</b> exists" . "$oneFeed")
 							} else={ :set dhcpServerScript "" }
-
 							:set dhcpServerInfo ($dhcpServerInfo . $dhcpServerName . $dhcpServerInterface . $dhcpServerLiaseTime . $dhcpServerAddressPool . $dhcpServerRadius . $dhcpServerScript . $oneFeed)
 							:set currentInfo $dhcpServerInfo
 						}
 					}
-
 					:if ([:len $dhcpServers] != 0 and [:len $dhcpServers] > 5) do={
 						:local counter 1
 						:foreach k,v in=$dhcpServers do={
@@ -417,7 +399,6 @@
 						}
 					}
 					:if ([:len $currentInfo] >= 1000) do={:set currentInfo ("<b>DHCP servers count:</b>\t\t" . [:len $dhcpServers] . "$doubleFeed")}
-
 				}
 			}
 			:if ($dhcpServersPressed = false) do={
@@ -430,7 +411,6 @@
 				:set inerfacesPressed true
 				:set currentHead "<i> - inerfaces:</i>$doubleFeed"
 				:local ifaceInfo ""
-
 				:if ($fCommand = "inerfacesPrint") do={
 					:local ifaceEther [/interface print detail as-value where type=ether]
 					:local ifaceEtherDisabled [/interface print detail as-value where disabled and type=ether]
@@ -479,15 +459,11 @@
 			:if ($inerfacesPressed = false) do={
 				:set currentButtons ($currentButtons . "$NL$buttonInerfaces")
 			}
-
 			:set currentButtons ($currentButtons . "$NL$buttonBackward")
 		}
-
 		:local replyMarkup [$teBuildKeyboard fButtonsKeyBoard=$currentButtons fReplyKeyboard=false]
 		:local sendText ("<b>$deviceName</b>$oneFeed-------------------------$oneFeed"."root - <b>modules</b>$currentHead$currentInfo")
-
 		:if ($fMessageID > 0) do={
-
 			:if ([$teEditCaption fChatID=$fChatID fMessageID=$fMessageID fText=$sendText fReplyMarkup=$replyMarkup] > 0) do={
 				:set result 1
 				:if ($fDBGteModules = true) do={:put "teModules Command Edit - OK"; :log info "teModules Commands Edit - OK"}
@@ -504,7 +480,6 @@
 					:if ($fDBGteModules = true) do={:put "teModules Command Send - ERROR"; :log info "teModules Commands Send - ERROR"}
 			}
 		}
-
 		:if ($fDBGteModules = true) do={:put "teModules = $result"; :log info "teModules = $result"}
 
 		:return $result

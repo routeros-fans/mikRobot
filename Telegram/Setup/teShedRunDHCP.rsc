@@ -5,7 +5,7 @@
 #
 /system script
 :if ([:len [find name=leaseRun.rsc]] != 0) do={ remove leaseRun.rsc }
-add dont-require-permissions=no name=leaseRun.rsc owner=xenon007 policy=\
+add dont-require-permissions=no name=leaseRun.rsc owner=admin policy=\
     ftp,read,write,policy,test,password,sensitive source="#-------------------\
     --------------------------------teLeaseRun--------------------------------\
     ------------------------------\r\

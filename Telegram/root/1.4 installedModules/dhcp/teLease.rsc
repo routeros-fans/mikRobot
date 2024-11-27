@@ -102,7 +102,6 @@
 
           :if ($fDBGteLease = true) do={
             :put $commentArray; :log info $commentArray
-#            :foreach i in=$commentArray do={:log info "$i - type of item:$([:typeof $i])"}
           }
 
           :set $leaseNote ($commentArray->0)
@@ -183,7 +182,6 @@
           :return true
         }
       } on-error={:put "teLease leaseBound 1 dinamic ERROR"; :log info "teLease leaseBound 1 dinamic ERROR"}
-
     }
 #   End leaseBound = 1
 

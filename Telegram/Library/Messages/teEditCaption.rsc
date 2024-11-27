@@ -7,7 +7,6 @@
 #   2.  fMessageID    -   id for edited message
 #   3.  fText         -   Message text
 #   4.  fReplyMarkup  -   Reply markup (may be empty)
-#   5.  fStealthMode 	-   Removes a function from the list of global variables. (may be empty).
 
 #   Function return message ID or 0
 

@@ -53,6 +53,7 @@
         :local logMessage ($data->"message")
         :set messageText "$oneFeed<b>$dateM $logTime</b> <b><i>$logTopic</i></b> - $logMessage $oneFeed"
         :local sendText "$logDefaultPicture <b>$deviceName: $fLogName</b>$oneFeed$messageText"
+        :if ([:len $eventLog] >= 20) do={ :delay 3 }
         $teSendMessage fChatID=$fLogChatID fText=$sendText
       }
     } else={

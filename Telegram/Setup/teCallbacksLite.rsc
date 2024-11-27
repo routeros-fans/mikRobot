@@ -5,7 +5,7 @@
 #
 /system script
 :if ([:len [find name=teCallbackIfaceCard]] != 0) do={ remove teCallbackIfaceCard }
-add dont-require-permissions=no name=teCallbackIfaceCard owner=xenon007 policy=\
+add dont-require-permissions=no name=teCallbackIfaceCard owner=admin policy=\
     ftp,read,write,policy,test source="#--------------------------------------\
     -------------teCallbackIfaceCard------------------------------------------\
     --------------------\r\
@@ -495,7 +495,7 @@ add dont-require-permissions=no name=teCallbackIfaceCard owner=xenon007 policy=\
     \n\t}\r\
     \n"
 :if ([:len [find name=teCallbackRootMenu]] != 0) do={ remove teCallbackRootMenu }
-add dont-require-permissions=no name=teCallbackRootMenu owner=xenon007 policy=\
+add dont-require-permissions=no name=teCallbackRootMenu owner=admin policy=\
     ftp,read,write,policy,test source="#--------------------------------------\
     -------------teCallbackRootMenu-------------------------------------------\
     -------------------\r\
@@ -627,7 +627,7 @@ add dont-require-permissions=no name=teCallbackRootMenu owner=xenon007 policy=\
     \n\t}\r\
     \n"
 :if ([:len [find name=teCallbackScripts]] != 0) do={ remove teCallbackScripts }
-add dont-require-permissions=no name=teCallbackScripts owner=xenon007 policy=\
+add dont-require-permissions=no name=teCallbackScripts owner=admin policy=\
     ftp,read,write,policy,test source="#--------------------------------------\
     -------------teCallbackScripts--------------------------------------------\
     ------------------\r\
@@ -763,7 +763,7 @@ add dont-require-permissions=no name=teCallbackScripts owner=xenon007 policy=\
     \n\t}\r\
     \n"
 :if ([:len [find name=teCallbackSystemMenu]] != 0) do={ remove teCallbackSystemMenu }
-add dont-require-permissions=no name=teCallbackSystemMenu owner=xenon007 policy=\
+add dont-require-permissions=no name=teCallbackSystemMenu owner=admin policy=\
     ftp,reboot,read,write,policy,test source="#-------------------------------\
     --------------------teCallbackSystemMenu----------------------------------\
     ----------------------------\r\

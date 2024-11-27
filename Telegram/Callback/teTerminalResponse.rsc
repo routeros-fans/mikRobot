@@ -11,7 +11,7 @@
 	:local fDBGteTerminalResponse [$teDebugCheck fDebugVariableName="fDBGteTerminalResponse"]
 
 	:global dbaseVersion
-	:local teTerminalResponseVersion "2.9.7.22"
+	:local teTerminalResponseVersion "2.25.9.22"
 	:set ($dbaseVersion->"teTerminalResponse") $teTerminalResponseVersion
 
 	:global dbaseBotSettings
@@ -28,6 +28,7 @@
 	:global teGetTime
 	:local dateM [$teGetDate]
 	:local timeM [$teGetTime]
+	:local oneFeed "%0D%0A"
 
 	:local pictAnswer "\E2\9D\97"
 
@@ -69,7 +70,12 @@
 
 	:set result [:tostr $result]
 	:if ([:len $result] = 0) do={ :set result "Command is executed" }
-	:if ([:len $result] > 500) do={ :set result [:pick $result 0 500] }
+	:if ([:len $result] > 500) do={
+		:local textToLogSend "<b>command:</b><code>$commandFromText</code>$oneFeed$oneFeed<b>result:</b><code>$result</code>"
+		:if ([:len $textToLogSend] >= 4096) do={ :set textToLogSend [:pick $textToLogSend 0 4095] }
+		$teSendMessage fChatID=$logSendGroup fText=$textToLogSend
+		:set result [:pick $result 0 500]
+	}
 
 	:set result [$teTerminal fChatID=$userChatID fMessageID=$rootMessageID fCommandInfo=$messageText fCallbackMsg=$result]
 

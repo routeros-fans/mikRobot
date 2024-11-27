@@ -20,7 +20,6 @@
 	:local logSendGroup ($dbaseBotSettings->"logSendGroup")
 
 	:global dbaseInlineCommands
-
 	:global teInlineQueryResultArticle
 	:global teInputTextMessageContent
 	:global teAnswerInlineQuery
@@ -29,12 +28,8 @@
 	:global teSendMessage
 	:global teDeleteMessage
 
-	:if ($fDBGteInlineResponse = true) do={:put "teInlineResponse begin..."; :log info "teInlineResponse begin..."}
-
-	:global teGetDate
-	:global teGetTime
-	:local dateM [$teGetDate]
-	:local timeM [$teGetTime]
+	:global teGetDate; :local dateM [$teGetDate]
+	:global teGetTime; :local timeM [$teGetTime]
 
 	:local pictAnswer "\E2\9D\97"
 
@@ -43,17 +38,15 @@
 	:local queryText [:tostr ($fMessage->"inline_query"->"query")]
 	:local queryOffset [:tostr ($fMessage->"inline_query"->"offset")]
 
-	:if ($fDBGteInlineResponse = true) do={:put "teInlineResponse queryID = $queryID"; :log info "teInlineResponse queryID = $queryID"}
-	:if ($fDBGteInlineResponse = true) do={:put "teInlineResponse queryText = $queryText"; :log info "teInlineResponse queryText = $queryText"}
-
 	:local rootMessageID ($dbaseBotSettings->$userChatID->"rootMessageID")
 
-#	:if ([:len $rootMessageID] = 0) do={
-#		:local sendText "<b>$pictAnswer$deviceName: $dateM $timeM</b>%0D%0A%0D%0A<b>Error:</b> Root messageID  not found.%0D%0A<b>Clear chat and try again</b>."
-#		$teSendMessage fChatID=$logSendGroup fText=$sendText
-#		:return true
-#	}
+	:if ([:len $rootMessageID] = 0) do={
+		:local sendText "<b>$pictAnswer$deviceName: $dateM $timeM</b>%0D%0A%0D%0A<b>Error:</b> Root messageID  not found.%0D%0A<b>Clear chat and try again</b>."
+		$teSendMessage fChatID=$logSendGroup fText=$sendText
+		:return true
+	}
 
+	:if ($fDBGteInlineResponse = true) do={:put "teInlineResponse queryID = $queryID"; :log info "teInlineResponse queryID = $queryID"}
 	:if ($fDBGteInlineResponse = true) do={:put "teInlineResponse query = $queryText"; :log info "teInlineResponse query = $queryText"}
 
 	:if ($queryText = "teTerminal") do={
@@ -78,7 +71,8 @@
 		:if ($fDBGteInlineResponse = true) do={:put "teInlineResponse queryOffset = $queryOffset"; :log info "teInlineResponse queryOffset = $queryOffset"}
 
 		:local offset []
-		:if ([:len $currentOffset] = 0) do={ :set $currentOffset 1
+		:if ([:len $currentOffset] = 0) do={
+			:set $currentOffset 1
 			:if ($lenArray > 5) do={ :set offset 4; :set paramOffset 6 } else={ :set offset ($lenArray - 1); :set paramOffset ""}
 		} else={
 			:if (($lenArray - $currentOffset) < 5) do={

@@ -5,7 +5,7 @@
 #
 /system script
 :if ([:len [find name=teCallbackPppCard]] != 0) do={ remove teCallbackPppCard }
-add dont-require-permissions=no name=teCallbackPppCard owner=xenon007 policy=\
+add dont-require-permissions=no name=teCallbackPppCard owner=admin policy=\
     ftp,read,write,policy,test,sensitive source="#----------------------------\
     -----------------------teCallbackPppCard----------------------------------\
     ----------------------------\r\

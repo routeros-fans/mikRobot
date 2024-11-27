@@ -1,6 +1,6 @@
 /system script
 :if ([:len [find name=teCallbackUsersCard]] != 0) do={ remove teCallbackUsersCard }
-add dont-require-permissions=no name=teCallbackUsersCard owner=xenon007 policy=\
+add dont-require-permissions=no name=teCallbackUsersCard owner=admin policy=\
     ftp,read,write,policy,test,password source="#-----------------------------\
     ----------------------teCallbackUsersCard---------------------------------\
     -----------------------------\r\
